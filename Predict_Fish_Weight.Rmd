@@ -95,7 +95,7 @@ best.model <- lm(Weight~Height+Width,data=Perch)
 summary(best.model)
 ```
 
-
+Interpreting the results, we see the best two element models for Perch are height and width.The best overall model is using the two element model using adjusted R squared.
 
 ## Pike
 
