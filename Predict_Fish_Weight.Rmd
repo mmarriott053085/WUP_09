@@ -132,8 +132,34 @@ Interpreting the results, we see the best two element models for Pike is using L
 
 ## Roach
 
+```{r}
+Roach <- filter(Fish,Species=="Roach")
+Roach <- select(Roach, -Species)
+```
+
+
+
 ### Best Models
 
-### Best Two regressor model
+```{r}
+library(leaps)
+regsubsets.out <-
+regsubsets(Weight ~ .,
+data = Roach,
+nbest = 1, # 1 best model for each number of predictors
+nvmax = NULL, # NULL for no limit on number of variables
+force.in = NULL, force.out = NULL,
+method = "exhaustive")
+
+summary.out <- summary(regsubsets.out)
+as.data.frame(summary.out$outmat)
+library(car)
+subsets(regsubsets.out,statistic="adjr2",legend="topright",main="Adjusted R^2")
+```
+
+Interpreting the results, we see the best two element models for Roach is using Length 3 and Width. The best overall model is using the 2 element model using Length 3 and Width using adjusted R squared.
+
 
 ## Final Summary Statements
+
+During this exercise, I learned how to use leaps and builds codes from scratch, adjusting when needed until I got the best adjusted R squared model.
